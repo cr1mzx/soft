@@ -205,7 +205,8 @@
           { "name": "Tg-ws-proxy (amurcanov)", "icon": "https://telegram.org/favicon.ico", "url": "https://github.com/amurcanov/tg-ws-proxy-android" },
           { "name": "Organic Maps", "icon": "https://avatars.githubusercontent.com/u/76659619", "url": "https://github.com/organicmaps/organicmaps" },
           { "name": "Catima", "icon": "https://avatars.githubusercontent.com/u/97764392", "url": "https://github.com/CatimaLoyalty/Android" },
-          { "name": "SpotiFLAC", "icon": "https://avatars.githubusercontent.com/u/275997661", "url": "https://github.com/spotiflacapp/SpotiFLAC-Mobile" }
+          { "name": "SpotiFLAC", "icon": "https://avatars.githubusercontent.com/u/275997661", "url": "https://github.com/spotiflacapp/SpotiFLAC-Mobile" },
+          { "name": "Epic Games", "icon": "https://epicgames.com/favicon.ico", "url": "https://store.epicgames.com/download/android" }
         ]
       }
     ]
