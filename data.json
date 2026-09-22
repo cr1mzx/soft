@@ -206,9 +206,18 @@
           { "name": "Organic Maps", "icon": "https://avatars.githubusercontent.com/u/76659619", "url": "https://github.com/organicmaps/organicmaps" },
           { "name": "Catima", "icon": "https://avatars.githubusercontent.com/u/97764392", "url": "https://github.com/CatimaLoyalty/Android" },
           { "name": "SpotiFLAC", "icon": "https://avatars.githubusercontent.com/u/275997661", "url": "https://github.com/spotiflacapp/SpotiFLAC-Mobile" },
-          { "name": "Epic Games", "icon": "https://epicgames.com/favicon.ico", "url": "https://store.epicgames.com/download/android" }
+          { "name": "Epic Games", "icon": "https://epicgames.com/favicon.ico", "url": "https://store.epicgames.com/download/android" },
+          { "name": "ADBAppControl", "icon": "https://adb.cybercat.dev/assets/img/acpc.png", "url": "https://t.me/AdbAppControl/240" }
         ]
-      }
+      },
+      {
+        "categoryName": "Android TV",
+        "defaultOpen": true,
+        "apps": [
+          { "name": "ADB TV", "icon": "https://adb.cybercat.dev/assets/img/acpc.png", "url": "https://adb.cybercat.dev/ru/tv/#download" },
+          { "name": "OwnTV", "icon": "", "url": "https://github.com/ahXN00/OwnTV" }
+        ]
+      }   
     ]
   }
 ]
