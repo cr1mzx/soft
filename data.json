@@ -1,0 +1,209 @@
+[
+  {
+    "id": "windows",
+    "name": "Windows",
+    "icon": "<svg class=\"w-4 h-4\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path d=\"M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-13.051-1.801\"/></svg>",
+    "categories": [
+      {
+        "categoryName": "Диагностика",
+        "defaultOpen": true,
+        "apps": [
+          { "name": "Revo Uninstaller", "icon": "https://upload.wikimedia.org/wikipedia/commons/8/83/Revouninstallerpro_icon.png", "url": "https://t.me/cr1mztg/16" },
+          { "name": "RegOrganizer", "icon": "https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxgctBe1PmZ8t1NL3PijYkXlQxMy_OYm70Ha.EP9qZjvBkti_mmo5lt.rvMRjCXchiuhU1P1liptD8BgFrM.4PaQ-&format=source", "url": "https://t.me/cr1mztg/18" },
+          { "name": "Everything", "icon": "https://www.voidtools.com/favicon.ico", "url": "https://www.voidtools.com/ru-ru/" },
+          { "name": "WizTree", "icon": "https://diskanalyzer.com/favicon.ico", "url": "https://diskanalyzer.com/download" },
+          { "name": "CrystalDiskMark", "icon": "https://crystalmark.info/favicon.ico", "url": "https://crystalmark.info/en/download/#CrystalDiskMark" },
+          { "name": "CrystalDiskInfo", "icon": "https://crystalmark.info/favicon.ico", "url": "https://crystalmark.info/en/download/#CrystalDiskInfo" },
+          { "name": "OCCT", "icon": "https://www.ocbase.com/favicon.ico", "url": "https://www.ocbase.com" },
+          { "name": "HWInfo", "icon": "https://www.hwinfo.com/favicon.ico", "url": "https://www.hwinfo.com/download/" },
+          { "name": "Ventoy", "icon": "https://avatars.githubusercontent.com/u/59477474?s=60&v=4", "url": "https://github.com/ventoy/Ventoy" },
+          { "name": "Rufus", "icon": "https://rufus.ie/favicon.ico", "url": "https://rufus.ie/ru/" },
+          { "name": "h2testw", "icon": "https://h2testw.org/wp-content/uploads/2023/03/h2testw-logo.png", "url": "https://h2testw.org/#download-h2testw" },
+          { "name": "Validrive", "icon": "https://www.grc.com/validrive/ValiDrive-Icon.png", "url": "https://www.grc.com/validrive.htm" }
+        ]
+      },
+      {
+        "categoryName": "Утилиты",
+        "defaultOpen": true,
+        "apps": [
+          { "name": "7-Zip", "icon": "https://www.7-zip.org/7ziplogo.png", "url": "https://www.7-zip.org" },
+          { "name": "WinRAR", "icon": "https://www.win-rar.com/partners/affiliates/images/screenshots/winrarbanner03.png", "url": "https://www.rarlab.com/download.htm" },
+          { "name": "ShareX", "icon": "https://getsharex.com/img/ShareX_Logo_120.png", "url": "https://getsharex.com/" },
+          { "name": "qBittorrent", "icon": "https://www.qbittorrent.org/favicon.ico", "url": "https://www.qbittorrent.org/download" },
+          { "name": "Notepad++", "icon": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Notepad_plus_plus.png?utm_source=commons.wikimedia.org", "url": "https://github.com/notepad-plus-plus/notepad-plus-plus" },
+          { "name": "LocalSend", "icon": "https://localsend.org/img/logo.png", "url": "https://localsend.org/ru" },
+          { "name": "KeePassXC", "icon": "https://avatars.githubusercontent.com/u/22534815?s=60&v=4", "url": "https://github.com/keepassxreboot/keepassxc" },
+          { "name": "Super Productivity", "icon": "https://avatars.githubusercontent.com/u/215719836?s=60&v=4", "url": "https://github.com/super-productivity/super-productivity" },
+          { "name": "PowerToys", "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfTgdzI9Ny5Tstzh_qrgPCRrvRrUf5FDPzDM4qztoZ2A&s", "url": "https://github.com/microsoft/powertoys" },
+          { "name": "FileConverter", "icon": "https://github.com/Tichau/FileConverter/raw/refs/heads/integration/Resources/Icons/ApplicationIcon-256x256.ico", "url": "https://github.com/Tichau/FileConverter" },
+          { "name": "OpenHashTab", "icon": "https://img.utdstc.com/icon/8d6/ed8/8d6ed8ec18dc70589fd63b0dafdbf53e4fa8db6aa6ce8dab14716d24a805be06:600", "url": "https://t.me/cr1mztg/15" },
+          { "name": "ExifTool", "icon": "https://exiftool.org/favicon.ico", "url": "https://exiftool.org" },
+          { "name": "Rainmeter", "icon": "https://www.rainmeter.net/favicon.ico", "url": "https://www.rainmeter.net" },
+          { "name": "AutoHotkey", "icon": "https://www.autohotkey.com/favicon.ico", "url": "https://www.autohotkey.com" },
+          { "name": "RustDesk", "icon": "https://avatars.githubusercontent.com/u/71636191?s=60&v=4", "url": "https://github.com/rustdesk/rustdesk" },
+          { "name": "hashcat", "icon": "https://avatars.githubusercontent.com/u/15949799?s=60&v=4", "url": "https://github.com/hashcat/hashcat" },
+          { "name": "TwitchTest", "icon": "https://twitch.tv/favicon.ico", "url": "https://r1ch.net/projects/twitchtest" },
+          { "name": "tbf", "icon": "https://twitch.tv/favicon.ico", "url": "https://github.com/vyneer/tbf" },
+          { "name": "Cheat Engine", "icon": "https://www.cheatengine.org/favicon.ico", "url": "https://github.com/cheat-engine/cheat-engine" },
+          { "name": "SteamAchievementManager", "icon": "", "url": "https://github.com/gibbed/SteamAchievementManager" },
+          { "name": "CreamInstaller", "icon": "", "url": "https://github.com/FroggMaster/CreamInstaller" },
+          { "name": "Razer Synapse", "icon": "https://assets2.razerzone.com/images/phoenix/razer-ths-logo.svg", "url": "https://www.razer.com/synapse-4" },
+          { "name": "AdwCleaner", "icon": "https://www.malwarebytes.com/favicon.ico", "url": "https://www.malwarebytes.com/adwcleaner" },
+          { "name": "DrWeb", "icon": "https://drweb.ru/favicon.ico", "url": "https://free.drweb.ru/download+cureit+free/" }
+        ]
+      },
+      {
+        "categoryName": "Мультимедиа",
+        "defaultOpen": true,
+        "apps": [
+          { "name": "K-Lite Codec Pack", "icon": "https://www.codecguide.com/mpc_logo.png", "url": "https://www.codecguide.com/download_kl.htm" },
+          { "name": "AIMP", "icon": "https://aimp.ru/v2/pages/download/icon-aimp.png", "url": "https://aimp.ru/?do=download&os=windows" },
+          { "name": "OBS", "icon": "https://obsproject.com/assets/images/new_icon_small-r.png", "url": "https://obsproject.com" },
+          { "name": "yt-dlp", "icon": "https://avatars.githubusercontent.com/u/79589310?s=60&v=4", "url": "https://github.com/yt-dlp/yt-dlp" },
+          { "name": "dlpx", "icon": "https://camo.githubusercontent.com/9fbd07251bff411aa804b830b1ef3943e60737b26883f74ee4ce90ec55e42970/68747470733a2f2f692e696d6775722e636f6d2f484339523578362e706e67", "url": "https://github.com/cr1mzx/dlpx" },
+          { "name": "FFmpeg", "icon": "https://ffmpeg.org/favicon.ico", "url": "https://www.gyan.dev/ffmpeg/builds" },
+          { "name": "TwitchDownloaderWPF", "icon": "https://github.com/lay295/TwitchDownloader/raw/master/TwitchDownloaderWPF/Images/Logo.png", "url": "https://github.com/lay295/TwitchDownloader" },
+          { "name": "LosslessCut", "icon": "https://github.com/mifi/lossless-cut/raw/master/src/renderer/src/icon.svg", "url": "https://github.com/mifi/lossless-cut" },
+          { "name": "Audacity", "icon": "https://avatars.githubusercontent.com/u/11648186?s=60&v=4", "url": "https://github.com/audacity/audacity" },
+          { "name": "Blender", "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Blender_logo_no_text.svg/1280px-Blender_logo_no_text.svg.png", "url": "https://www.blender.org/download" },
+          { "name": "VLC", "icon": "https://www.videolan.org/favicon.ico", "url": "https://www.videolan.org/vlc/index.html?pStoreID=fedex%27A=0" }
+        ]
+      },
+      {
+        "categoryName": "Браузеры",
+        "defaultOpen": true,
+        "apps": [
+          { "name": "Helium", "icon": "https://helium.computer/icon/helium-app-icon.svg", "url": "https://helium.computer" },
+          { "name": "Mozilla Firefox", "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/1280px-Firefox_logo%2C_2019.svg.png", "url": "https://www.firefox.com/ru/download/all/desktop-release/win64/ru" },
+          { "name": "LibreWolf", "icon": "https://librewolf.net/icon.svg", "url": "https://librewolf.net" },
+          { "name": "Google Chrome", "icon": "https://www.google.com/chrome/static/images/chrome-logo-m100.svg", "url": "https://www.google.com/chrome" },
+          { "name": "Tor", "icon": "https://www.torproject.org/static/images/favicon/favicon.ico", "url": "https://download.torproject.org/ru/tor-browser-for-desktop/" }
+        ]
+      },
+      {
+        "categoryName": "Общение",
+        "defaultOpen": true,
+        "apps": [
+          { "name": "Telegram", "icon": "https://telegram.org/favicon.ico", "url": "https://desktop.telegram.org/" },
+          { "name": "AyuGram", "icon": "https://avatars.githubusercontent.com/u/131606289?s=60&v=4", "url": "https://github.com/AyuGram/AyuGramDesktop" },
+          { "name": "Discord", "icon": "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/66e3d80db9971f10a9757c99_Symbol.svg", "url": "https://discord.com/download" }
+        ]
+      },
+      {
+        "categoryName": "Драйвера",
+        "defaultOpen": true,
+        "apps": [
+          { "name": "NVIDIA Driver", "icon": "https://www.nvidia.com/favicon.ico", "url": "https://www.nvidia.com/en-eu/geforce/drivers" },
+          { "name": "NVIDIA App", "icon": "https://www.nvidia.com/favicon.ico", "url": "https://www.nvidia.com/en-eu/software/nvidia-app" },
+          { "name": "SDI", "icon": "https://sdi.com.ru/favicon.png", "url": "https://sdi.com.ru" },
+          { "name": "DriverStoreExplorer", "icon": "https://github.com/lostindark/DriverStoreExplorer/raw/master/Rapr/icon.ico", "url": "https://github.com/lostindark/DriverStoreExplorer" },
+          { "name": "C++ Пакеты", "icon": "https://www.microsoft.com/favicon.ico", "url": "https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170" },
+          { "name": "DirectX SDK 2010", "icon": "https://www.microsoft.com/favicon.ico", "url": "https://www.microsoft.com/ru-ru/download/details.aspx?id=8109" },
+          { "name": "DDU", "icon": "https://www.wagnardsoft.com/sites/default/files/styles/large/public/field/image/ddu_logo3_17og_46.jpg?itok=57tKrzAJ", "url": "https://www.wagnardsoft.com/display-driver-uninstaller-ddu" },
+          { "name": "NVCleanstall", "icon": "https://tpucdn.com/download/images/133_icon-v1745405913.png", "url": "https://www.techpowerup.com/download/techpowerup-nvcleanstall/" }
+        ]
+      },
+      {
+        "categoryName": "Игры",
+        "defaultOpen": true,
+        "apps": [
+          { "name": "Steam", "icon": "https://store.steampowered.com/favicon.ico", "url": "https://store.steampowered.com/about" },
+          { "name": "Epic Games", "icon": "https://upload.wikimedia.org/wikipedia/commons/3/31/Epic_Games_logo.svg", "url": "https://store.epicgames.com/download?lang=ru" },
+          { "name": "Ubisoft Connect", "icon": "https://img.icons8.com/fluent-systems-regular/1200/ubisoft-connect.jpg", "url": "https://www.ubisoft.com/en-us/ubisoft-connect/download" },
+          { "name": "EA App", "icon": "https://media.contentapi.ea.com/content/dam/eacom/common/medallion-violet.png", "url": "https://www.ea.com/ru-ru/ea-app" },
+          { "name": "Legacy Launcher", "icon": "https://legacylauncher.ru/favicon.ico", "url": "https://legacylauncher.ru/ru" },
+          { "name": "x-minecraft-launcher", "icon": "https://avatars.githubusercontent.com/u/8425067?s=60&v=4", "url": "https://github.com/voxelum/x-minecraft-launcher" }
+        ]
+      },
+      {
+        "categoryName": "Инет",
+        "defaultOpen": true,
+        "apps": [
+          { "name": "zapret (Flowseal)", "icon": "https://avatars.githubusercontent.com/u/50780822?s=60&v=4", "url": "https://github.com/Flowseal/zapret-discord-youtube" },
+          { "name": "zapret (Cr1mz)", "icon": "https://avatars.githubusercontent.com/u/87567822?v=4", "url": "https://t.me/cr1mztg/17" },
+          { "name": "tg-ws-proxy", "icon": "https://telegram.org/favicon.ico", "url": "https://github.com/Flowseal/tg-ws-proxy" },
+          { "name": "v2rayN", "icon": "", "url": "https://github.com/2dust/v2rayN" },
+          { "name": "WARP", "icon": "https://one.one.one.one/favicon.ico", "url": "https://one.one.one.one" },
+          { "name": "AdGuardHome", "icon": "https://avatars.githubusercontent.com/u/8361145?s=60&v=4", "url": "https://github.com/AdguardTeam/AdGuardHome" },
+          { "name": "zapret2", "icon": "", "url": "https://github.com/bol-van/zapret2" },
+          { "name": "zapret-win-bundle", "icon": "", "url": "https://github.com/bol-van/zapret-win-bundle" },
+          { "name": "Dns Jumper", "icon": "https://dnsjumper.net/wp-content/uploads/2024/02/DNS-Jumper.png", "url": "https://dnsjumper.net" }
+        ]
+      },
+      {
+        "categoryName": "Разработка",
+        "defaultOpen": true,
+        "apps": [
+          { "name": "Visual Studio Code", "icon": "https://code.visualstudio.com/favicon.ico", "url": "https://code.visualstudio.com/Download" },
+          { "name": "Git", "icon": "https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png", "url": "https://git-scm.com/downloads" },
+          { "name": "Python", "icon": "https://www.python.org/favicon.ico", "url": "https://www.python.org" },
+          { "name": "Termius", "icon": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><path d=%22M0 18.281C0 8.185 8.185 0 18.281 0h43.438C71.815 0 80 8.185 80 18.281v43.438C80 71.815 71.815 80 61.719 80H18.281C8.185 80 0 71.815 0 61.719Z%22 fill=%22%231c2653%22/><path d=%22M32.391 38.812 35.662 37.953 32.383 37.092c-.34-.088-.585-.357-.585-.826v-1.032c0-.45.271-.644.58-.644.1 0 .204.021.308.06l5.838 1.889c.443.148.687.504.687.992v.844c0 .488-.243.844-.687.992l-5.851 1.893c-.099.029-.187.043-.273.043-.366 0-.602-.263-.602-.647v-1.015c0-.489.253-.758.593-.829z%22 fill=%22%23fff%22/></svg>", "url": "https://termius.com" },
+          { "name": "Tabby", "icon": "https://tabby.sh/32bf32ff6c87e8d18932.svg", "url": "https://github.com/Eugeny/tabby" },
+          { "name": "VSCodium", "icon": "https://avatars.githubusercontent.com/u/40338071?s=60&v=4", "url": "https://github.com/VSCodium/vscodium" },
+          { "name": "Node.js", "icon": "https://nodejs.org/static/logos/nodejsHex.svg", "url": "https://nodejs.org/en/download" },
+          { "name": "VirtualBox", "icon": "https://www.virtualbox.org/favicon.ico", "url": "https://www.virtualbox.org/" },
+          { "name": "MuMu Player", "icon": "https://www.mumuplayer.com/favicon.ico", "url": "https://www.mumuplayer.com/ru/" },
+          { "name": "Android Studio", "icon": "https://developer.android.com/favicon.ico", "url": "https://developer.android.com/studio?hl=ru" }
+        ]
+      },
+      {
+        "categoryName": "Для телефона",
+        "defaultOpen": false,
+        "apps": [
+          { "name": "AYA ADB", "icon": "", "url": "https://github.com/liriliri/aya" },
+          { "name": "ADBAppControl", "icon": "https://adb.cybercat.dev/assets/img/acpc.png", "url": "https://adb.cybercat.dev/ru/" },
+          { "name": "scrcpy", "icon": "", "url": "https://github.com/Genymobile/scrcpy" },
+          { "name": "platform-tools", "icon": "https://developer.android.com/favicon.ico", "url": "https://developer.android.com/tools/releases/platform-tools?hl=ru" }
+        ]
+      },
+      {
+        "categoryName": "Нейросети",
+        "defaultOpen": false,
+        "apps": [
+          { "name": "ollama", "icon": "https://avatars.githubusercontent.com/u/151674099?s=60&v=4", "url": "https://github.com/ollama/ollama" },
+          { "name": "voicebox", "icon": "", "url": "https://github.com/jamiepine/voicebox" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "android",
+    "name": "Android",
+    "icon": "<svg class=\"w-4 h-4\" fill=\"currentColor\" viewBox=\"0 0 24 24\"><path d=\"M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993s-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993s-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592c.1265-.219.0511-.5003-.1679-.6268-.219-.1265-.5003-.0511-.6268.1679l-2.0223 3.5025c-1.5583-.7119-3.3283-1.1118-5.2118-1.1118s-3.6535.400-5.2118 1.1118L4.612 5.3992c-.1265-.219-.4078-.2944-.6268-.1679-.219.1265-.2944.4078-.1679.6268l1.9973 3.4592C2.6841 11.0827.5 14.2818.5 18h23c0-3.7182-2.1841-6.9173-5.3185-8.6786\"/></svg>",
+    "categories": [
+      {
+        "categoryName": "Удалено из Google Play",
+        "defaultOpen": true,
+        "apps": [
+          { "name": "Mir Pay", "icon": "https://1sx3iqv03l.a.trbcdn.net/assets/images/mirpay/mirpay-logo.svg", "url": "https://vamprivet.ru/mirpay/#stores" },
+          { "name": "Озон Банк", "icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.LwVYmqQtPqHAnDV0SzdijQHaHa%3Fpid%3DApi&f=1&ipt=7e5962cc8bb1422ab7ca452beb42bfbab0d611da215d8c70b7f31c42f0db5613&ipo=images", "url": "https://ir.ozone.ru/s3/ob-loader/static/apps/release/ozon_bank.apk" },
+          { "name": "Т-Банк", "icon": "https://cdn.tbank.ru/static/pages/files/d39e9d26-fd5e-4574-9ad3-c3f2fc102598.png", "url": "https://acdn.t-bank-app.ru/download_apk/tbank_app.html" },
+          { "name": "Альфа Банк", "icon": "https://www.alfabank.by/upload/docs/bank/A_log.png", "url": "https://alfamobile-web.servicecdn.ru/latest/alfa-bank.apk" },
+          { "name": "СберБанк", "icon": "https://logo-teka.com/wp-content/uploads/2025/06/sber-logo-ru.svg", "url": "https://cdnweb.sberbank.ru/appdistr/SberbankOnline.apk" },
+          { "name": "ВТБ", "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/VTB_Logo_2018.svg/120px-VTB_Logo_2018.svg.png", "url": "https://www.vtb.com/apk/vtbonline.apk" },
+          { "name": "Avito", "icon": "https://www.avito.ru/favicon.ico", "url": "https://www.avito.st/s/app/apk/avito.apk" },
+          { "name": "MAX", "icon": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F1%2F12%2F%25D0%259B%25D0%25BE%25D0%25B3%25D0%25BE%25D1%2582%25D0%25B8%25D0%25BF_MAX.svg%2F1280px-%25D0%259B%25D0%25BE%25D0%25B3%25D0%25BE%25D1%2582%25D0%25B8%25D0%25BF_MAX.svg.png", "url": "https://download.max.ru/#android" },
+          { "name": "2GIS", "icon": "https://2gis.ru/favicon.ico", "url": "https://disk.2gis.com/android/Latest/2GIS.apk" }
+        ]
+      },
+      {
+        "categoryName": "Отсутствует или лучше чем в GP",
+        "defaultOpen": true,
+        "apps": [
+          { "name": "Telegram", "icon": "https://telegram.org/favicon.ico", "url": "https://telegram.org/android?setln=ru" },
+          { "name": "Mi Home vevs", "icon": "https://play-lh.googleusercontent.com/c0B5Rrg5pxwCH08jt7JlyW11eGLbERV_soQtDaHu4_FL97Xtl1SjWUyQyNFTZE_SQVBAz7qDRvKqdiUkGMlneA=w240-h480-rw", "url": "https://www.vevs.me/2017/11/mi-home.html" },
+          { "name": "Obtanium", "icon": "https://github.com/ImranR98/Obtainium/raw/main/assets/graphics/icon_small.png", "url": "https://github.com/ImranR98/Obtainium" },
+          { "name": "LocalSend", "icon": "https://localsend.org/img/logo.png", "url": "https://localsend.org/ru" },
+          { "name": "Super Productivity", "icon": "https://avatars.githubusercontent.com/u/215719836?s=60&v=4", "url": "https://github.com/super-productivity/super-productivity" },
+          { "name": "KeePassDX", "icon": "https://avatars.githubusercontent.com/u/22522604", "url": "https://github.com/kunzisoft/keepassdx" },
+          { "name": "2FAS", "icon": "https://avatars.githubusercontent.com/u/18189374", "url": "https://github.com/twofas/2fas-android" },
+          { "name": "ByeByeDPI", "icon": "https://github.com/romanvht/ByeDPIAndroid/raw/master/.github/images/app.svg", "url": "https://github.com/romanvht/ByeByeDPI" },
+          { "name": "Tg-ws-proxy (amurcanov)", "icon": "https://telegram.org/favicon.ico", "url": "https://github.com/amurcanov/tg-ws-proxy-android" },
+          { "name": "Organic Maps", "icon": "https://avatars.githubusercontent.com/u/76659619", "url": "https://github.com/organicmaps/organicmaps" },
+          { "name": "Catima", "icon": "https://avatars.githubusercontent.com/u/97764392", "url": "https://github.com/CatimaLoyalty/Android" },
+          { "name": "SpotiFLAC", "icon": "https://avatars.githubusercontent.com/u/275997661", "url": "https://github.com/spotiflacapp/SpotiFLAC-Mobile" }
+        ]
+      }
+    ]
+  }
+]
