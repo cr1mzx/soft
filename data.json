@@ -31,7 +31,7 @@
           { "name": "WinRAR", "icon": "https://www.win-rar.com/partners/affiliates/images/screenshots/winrarbanner03.png", "url": "https://www.rarlab.com/download.htm" },
           { "name": "ShareX", "icon": "https://getsharex.com/img/ShareX_Logo_120.png", "url": "https://getsharex.com/" },
           { "name": "qBittorrent", "icon": "https://www.qbittorrent.org/favicon.ico", "url": "https://www.qbittorrent.org/download" },
-          { "name": "Notepad++", "icon": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Notepad_plus_plus.png?utm_source=commons.wikimedia.org", "url": "https://github.com/notepad-plus-plus/notepad-plus-plus" },
+          { "name": "Notepad++", "icon": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Notepad_plus_plus.png", "url": "https://github.com/notepad-plus-plus/notepad-plus-plus" },
           { "name": "LocalSend", "icon": "https://localsend.org/img/logo.png", "url": "https://localsend.org/ru" },
           { "name": "KeePassXC", "icon": "https://avatars.githubusercontent.com/u/22534815", "url": "https://github.com/keepassxreboot/keepassxc" },
           { "name": "Super Productivity", "icon": "https://avatars.githubusercontent.com/u/215719836", "url": "https://github.com/super-productivity/super-productivity" },
@@ -136,6 +136,7 @@
         "defaultOpen": true,
         "apps": [
           { "name": "Visual Studio Code", "icon": "https://code.visualstudio.com/favicon.ico", "url": "https://code.visualstudio.com/Download" },
+          { "name": "Visual Studio", "icon": "https://upload.wikimedia.org/wikipedia/commons/2/20/Visual_Studio_Icon_2026.svg", "url": "https://visualstudio.microsoft.com/ru/" },
           { "name": "Git", "icon": "https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png", "url": "https://git-scm.com/downloads" },
           { "name": "Python", "icon": "https://www.python.org/favicon.ico", "url": "https://www.python.org" },
           { "name": "Termius", "icon": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><path d=%22M0 18.281C0 8.185 8.185 0 18.281 0h43.438C71.815 0 80 8.185 80 18.281v43.438C80 71.815 71.815 80 61.719 80H18.281C8.185 80 0 71.815 0 61.719Z%22 fill=%22%231c2653%22/><path d=%22M32.391 38.812 35.662 37.953 32.383 37.092c-.34-.088-.585-.357-.585-.826v-1.032c0-.45.271-.644.58-.644.1 0 .204.021.308.06l5.838 1.889c.443.148.687.504.687.992v.844c0 .488-.243.844-.687.992l-5.851 1.893c-.099.029-.187.043-.273.043-.366 0-.602-.263-.602-.647v-1.015c0-.489.253-.758.593-.829z%22 fill=%22%23fff%22/></svg>", "url": "https://termius.com" },
@@ -192,6 +193,7 @@
         "defaultOpen": true,
         "apps": [
           { "name": "Telegram", "icon": "https://telegram.org/favicon.ico", "url": "https://telegram.org/android?setln=ru" },
+          { "name": "VTLite", "icon": "https://avatars.githubusercontent.com/u/90327828", "url": "https://github.com/vtosters/lite" },
           { "name": "Mi Home vevs", "icon": "https://play-lh.googleusercontent.com/c0B5Rrg5pxwCH08jt7JlyW11eGLbERV_soQtDaHu4_FL97Xtl1SjWUyQyNFTZE_SQVBAz7qDRvKqdiUkGMlneA=w240-h480-rw", "url": "https://www.vevs.me/2017/11/mi-home.html" },
           { "name": "Obtanium", "icon": "https://github.com/ImranR98/Obtainium/raw/main/assets/graphics/icon_small.png", "url": "https://github.com/ImranR98/Obtainium" },
           { "name": "LocalSend", "icon": "https://localsend.org/img/logo.png", "url": "https://localsend.org/ru" },
