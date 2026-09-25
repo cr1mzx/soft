@@ -79,7 +79,7 @@
           { "name": "Helium", "icon": "https://helium.computer/icon/helium-app-icon.svg", "url": "https://helium.computer" },
           { "name": "Mozilla Firefox", "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/1280px-Firefox_logo%2C_2019.svg.png", "url": "https://www.firefox.com/ru/download/all/desktop-release/win64/ru" },
           { "name": "LibreWolf", "icon": "https://librewolf.net/icon.svg", "url": "https://librewolf.net" },
-          { "name": "Google Chrome", "icon": "https://www.google.com/chrome/static/images/chrome-logo-m100.svg", "url": "https://www.google.com/chrome" },
+          { "name": "Google Chrome", "icon": "https://www.google.com/chrome/static/images/chrome-logo-m100.svg", "url": "https://www.google.com/chrome/?standalone=1" },
           { "name": "Tor", "icon": "https://www.torproject.org/static/images/favicon/favicon.ico", "url": "https://download.torproject.org/ru/tor-browser-for-desktop/" }
         ]
       },
