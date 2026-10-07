@@ -381,6 +381,11 @@
             "name": "WinUtil",
             "icon": "",
             "url": "https://github.com/christitustech/winutil"
+          },
+          {
+            "name": "LibreOffice",
+            "icon": "data:image/svg+xml;utf8,%3Csvg%20fill%3D%22%2318A303%22%20role%3D%22img%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3ELibreOffice%3C%2Ftitle%3E%3Cpath%20d%3D%22M16.365%200a.597.597%200%2000-.555.352.582.582%200%2000.128.635l4.985%204.996a.605.605%200%2000.635.133.59.59%200%2000.363-.53V.577A.605.605%200%200021.335%200zM2.661%200a.59.59%200%2000-.582.59v22.82a.59.59%200%2000.582.59h18.67a.59.59%200%2000.59-.59V8.716a.59.59%200%2000-.17-.42L13.674.182a.59.59%200%2000-.42-.181zm.59%201.184h9.754l7.733%207.77v13.863H3.251z%22%2F%3E%3C%2Fsvg%3E",
+            "url": "https://www.libreoffice.org/download/"
           }
         ]
       },
