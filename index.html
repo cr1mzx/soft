@@ -3,461 +3,478 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="https://avatars.githubusercontent.com/u/87567822?v=4">
   <title>П.О.</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              400: '#38bdf8',
-              500: '#0ea5e9',
-              600: '#0284c7',
-            },
-            dark: {
-              bg: '#0b0f17',
-              card: '#161e2e',
-              hover: '#1e293b',
-              border: '#26334d'
-            }
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
-    body {
-      background-color: #0b0f17;
-      color: #f8fafc;
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      -webkit-tap-highlight-color: transparent;
+    *,::before,::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0b0f17;
+      --card:#161e2e;
+      --hover:#1e293b;
+      --border:#26334d;
+      --brand:#0ea5e9;
+      --brand-light:#38bdf8;
+      --text:#f8fafc;
+      --text-muted:#94a3b8;
+      --text-dim:#64748b;
     }
-
-    .category-content-wrapper {
-      transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-      overflow: hidden;
-      will-change: height, opacity;
+    html{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      -webkit-tap-highlight-color:transparent;
+      padding:1rem;
+      display:flex;
+      justify-content:center;
     }
-
-    .category-content-wrapper.collapsed {
-      height: 0 !important;
-      opacity: 0;
-      pointer-events: none;
+    @media(min-width:640px){body{padding:1.5rem}}
+    @media(min-width:768px){body{padding:2.5rem}}
+    ::-webkit-scrollbar{width:8px}
+    ::-webkit-scrollbar-track{background:var(--bg)}
+    ::-webkit-scrollbar-thumb{background:var(--hover);border-radius:4px}
+    ::-webkit-scrollbar-thumb:hover{background:#334155}
+    .wrap{width:100%;max-width:56rem;display:flex;flex-direction:column;gap:1.5rem}
+    .platform-bar{display:flex;align-items:center;justify-content:center}
+    .platform-selector{
+      position:relative;display:inline-flex;padding:6px;
+      background:var(--card);border:1px solid var(--border);
+      border-radius:1rem;gap:6px;max-width:100%;overflow-x:auto;
     }
-
-    .chevron-icon {
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    .platform-indicator{
+      position:absolute;top:6px;bottom:6px;left:0;
+      background:var(--brand);border-radius:0.75rem;
+      box-shadow:0 2px 8px rgba(14,165,233,.2);
+      pointer-events:none;opacity:0;
+      transition:width .18s cubic-bezier(.4,0,.2,1),transform .18s cubic-bezier(.4,0,.2,1);
     }
-    .collapsed .chevron-icon {
-      transform: rotate(-90deg);
+    .platform-btn{
+      position:relative;z-index:1;display:flex;align-items:center;gap:8px;
+      padding:8px 16px;border-radius:0.75rem;border:none;background:transparent;
+      cursor:pointer;font-size:.8rem;font-weight:600;
+      color:var(--text-muted);transition:color .15s;white-space:nowrap;
+      font-family:inherit;
     }
-
-    .app-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 0.75rem;
+    @media(min-width:640px){.platform-btn{font-size:.875rem}}
+    .platform-btn:hover{color:var(--text)}
+    .platform-btn.active{color:#fff}
+    .toolbar{display:flex;flex-direction:column;gap:.75rem;align-items:center;justify-content:space-between}
+    @media(min-width:640px){.toolbar{flex-direction:row}}
+    .search-wrap{position:relative;width:100%}
+    @media(min-width:640px){.search-wrap{width:20rem}}
+    .search-icon{
+      position:absolute;left:14px;top:50%;transform:translateY(-50%);
+      color:var(--text-muted);pointer-events:none;
     }
-
-    @media (max-width: 520px) {
-      .app-grid {
-        grid-template-columns: 1fr;
-      }
+    .search-input{
+      width:100%;padding:10px 36px 10px 40px;
+      background:var(--card);border:1px solid var(--border);
+      border-radius:.75rem;color:var(--text);font-size:.875rem;
+      font-family:inherit;outline:none;
+      transition:border-color .2s,box-shadow .2s;
     }
-
-    .glass-card {
-      background: rgba(22, 30, 46, 0.75);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(38, 51, 77, 0.8);
+    .search-input::placeholder{color:var(--text-muted)}
+    .search-input:focus{border-color:var(--brand-light);box-shadow:0 0 0 2px rgba(56,189,248,.2)}
+    .clear-btn{
+      display:none;position:absolute;right:12px;top:50%;transform:translateY(-50%);
+      background:none;border:none;cursor:pointer;color:var(--text-muted);
+      align-items:center;padding:2px;
     }
-
-    .glass-card:hover {
-      background: rgba(30, 41, 59, 0.9);
-      border-color: rgba(56, 189, 248, 0.4);
+    .clear-btn:hover{color:var(--text)}
+    .clear-btn.visible{display:flex}
+    .btn-group{display:flex;align-items:center;gap:8px;width:100%;justify-content:flex-end}
+    @media(min-width:640px){.btn-group{width:auto}}
+    .ctrl-btn{
+      flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+      padding:8px 14px;font-size:.75rem;font-weight:600;
+      color:#cbd5e1;background:var(--card);border:1px solid var(--border);
+      border-radius:.75rem;cursor:pointer;transition:background .2s;
+      font-family:inherit;white-space:nowrap;
     }
-
-    ::-webkit-scrollbar {
-      width: 8px;
+    @media(min-width:640px){.ctrl-btn{flex:none}}
+    .ctrl-btn:hover{background:var(--hover)}
+    #catalog{display:flex;flex-direction:column;gap:1rem}
+    .cat-box{
+      border-radius:1rem;border:1px solid var(--border);
+      background:rgba(22,30,46,.6);overflow:hidden;
+      box-shadow:0 4px 16px rgba(0,0,0,.3);
     }
-    ::-webkit-scrollbar-track {
-      background: #0b0f17;
+    .cat-header{
+      padding:16px 20px;display:flex;align-items:center;
+      justify-content:space-between;cursor:pointer;user-select:none;
+      background:var(--card);transition:background .15s;
     }
-    ::-webkit-scrollbar-thumb {
-      background: #1e293b;
-      border-radius: 4px;
+    .cat-header:hover{background:rgba(30,41,59,.8)}
+    .cat-header-left{display:flex;align-items:center;gap:12px}
+    .cat-name{font-weight:700;font-size:1rem;color:#f1f5f9;letter-spacing:.01em}
+    @media(min-width:640px){.cat-name{font-size:1.125rem}}
+    .cat-count{
+      padding:2px 10px;font-size:.75rem;font-weight:600;
+      border-radius:9999px;background:#1e293b;color:var(--brand-light);
+      border:1px solid rgba(51,65,85,.6);
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #334155;
+    .chevron{color:var(--text-muted);padding:4px;border-radius:.5rem;transition:transform .3s cubic-bezier(.4,0,.2,1)}
+    .cat-box.collapsed .chevron{transform:rotate(-90deg)}
+    .cat-content{
+      transition:height .35s cubic-bezier(.4,0,.2,1),opacity .3s ease;
+      overflow:hidden;will-change:height,opacity;
     }
-
-    .platform-indicator {
-      transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1), width 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+    .cat-content.collapsed{height:0!important;opacity:0;pointer-events:none}
+    .cat-inner{padding:12px}
+    @media(min-width:640px){.cat-inner{padding:16px}}
+    .app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.75rem}
+    @media(max-width:520px){.app-grid{grid-template-columns:1fr}}
+    .app-card{
+      display:flex;align-items:center;gap:14px;padding:12px;
+      border-radius:.75rem;text-decoration:none;
+      background:rgba(22,30,46,.75);
+      border:1px solid rgba(38,51,77,.8);
+      backdrop-filter:blur(8px);
+      transition:background .2s,border-color .2s,transform .2s,box-shadow .2s;
+      box-shadow:0 1px 4px rgba(0,0,0,.2);
+    }
+    .app-card:hover{
+      background:rgba(30,41,59,.9);
+      border-color:rgba(56,189,248,.4);
+      transform:translateY(-2px);
+      box-shadow:0 4px 12px rgba(14,165,233,.05);
+    }
+    .app-icon{
+      width:40px;height:40px;flex-shrink:0;
+      border-radius:.5rem;background:rgba(30,41,59,.8);
+      padding:6px;display:flex;align-items:center;justify-content:center;
+      overflow:hidden;transition:transform .2s;
+    }
+    @media(min-width:640px){.app-icon{width:44px;height:44px}}
+    .app-card:hover .app-icon{transform:scale(1.05)}
+    .app-icon img{width:100%;height:100%;object-fit:contain;display:block}
+    .app-name{
+      font-size:.75rem;font-weight:600;color:#e2e8f0;
+      line-height:1.3;
+      display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+      overflow:hidden;
+      transition:color .2s;
+    }
+    @media(min-width:640px){.app-name{font-size:.875rem}}
+    .app-card:hover .app-name{color:var(--brand-light)}
+    #noResults{display:none;text-align:center;padding:3rem 0;flex-direction:column;align-items:center;gap:.75rem}
+    #noResults.visible{display:flex}
+    .no-res-icon{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:48px;height:48px;border-radius:9999px;
+      background:#1e293b;color:var(--text-muted);
+    }
+    footer{
+      text-align:center;padding:1.5rem 0 .5rem;
+      font-size:.75rem;color:var(--text-dim);
+      border-top:1px solid rgba(38,51,77,.5);
     }
   </style>
 </head>
-<body class="p-4 sm:p-6 md:p-10 flex justify-center">
+<body>
+  <div class="wrap">
 
-  <div class="w-full max-w-4xl space-y-6">
-    
-    <header class="text-center space-y-2 py-2">
-      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white flex items-center justify-center gap-2">
-        <!-- <span class="bg-gradient-to-r from-brand-400 to-sky-200 bg-clip-text text-transparent">П.О.</span>
-      </h1>
-      <p class="text-slate-400 text-sm sm:text-base max-w-md mx-auto">
-        Ссылки на программы -->
-      </p>
-    </header>
-
-    <div class="flex items-center justify-center">
-      <div id="platformSelector" class="relative inline-flex p-1.5 bg-dark-card border border-dark-border rounded-2xl gap-1.5 max-w-full overflow-x-auto">
-        <div id="platformIndicator" class="platform-indicator absolute top-1.5 bottom-1.5 left-0 bg-brand-500 rounded-xl shadow-md shadow-brand-500/20 pointer-events-none opacity-0"></div>
+    <div class="platform-bar">
+      <div id="platformSelector" class="platform-selector">
+        <div id="platformIndicator" class="platform-indicator"></div>
       </div>
     </div>
 
-    <div class="flex flex-col sm:flex-row gap-3 items-center justify-between">
-      <div class="relative w-full sm:w-80">
-        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-          </svg>
-        </div>
-        <input 
-          type="text" 
-          id="searchInput" 
-          placeholder="Поиск программы..." 
-          class="w-full pl-10 pr-9 py-2.5 bg-dark-card border border-dark-border rounded-xl text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-400/50 focus:border-brand-400 transition-all duration-200 shadow-sm"
-        >
-        <button id="clearSearch" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-white">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Поиск программы..." class="search-input" autocomplete="off" spellcheck="false">
+        <button id="clearSearch" class="clear-btn" aria-label="Очистить">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
-
-      <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
-        <button 
-          id="expandAllBtn" 
-          class="flex-1 sm:flex-none px-3.5 py-2 text-xs font-semibold text-slate-300 bg-dark-card border border-dark-border hover:bg-slate-800 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5"
-        >
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7"/></svg>
+      <div class="btn-group">
+        <button id="expandAllBtn" class="ctrl-btn">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7"/></svg>
           Раскрыть все
         </button>
-        <button 
-          id="collapseAllBtn" 
-          class="flex-1 sm:flex-none px-3.5 py-2 text-xs font-semibold text-slate-300 bg-dark-card border border-dark-border hover:bg-slate-800 rounded-xl transition-all duration-200 flex items-center justify-center gap-1.5"
-        >
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"/></svg>
+        <button id="collapseAllBtn" class="ctrl-btn">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"/></svg>
           Свернуть все
         </button>
       </div>
     </div>
 
-    <div id="catalog" class="space-y-4"></div>
+    <div id="catalog"></div>
 
-    <div id="noResults" class="hidden text-center py-12 space-y-3">
-      <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-slate-800 text-slate-400">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 9.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    <div id="noResults">
+      <div class="no-res-icon">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 9.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
       </div>
-      <p class="text-slate-300 font-medium">Ничего не найдено</p>
-      <p class="text-slate-500 text-sm">Попробуйте изменить поисковый запрос</p>
+      <p style="color:#cbd5e1;font-weight:500">Ничего не найдено</p>
+      <p style="color:var(--text-dim);font-size:.875rem">Попробуйте изменить поисковый запрос</p>
     </div>
 
-    <footer class="text-center pt-6 pb-2 text-xs text-slate-500 border-t border-dark-border/50">
-      <p>Cr1mz</p>
-    </footer>
-
+    <footer>Cr1mz</footer>
   </div>
 
   <script>
-    let platformsData = [];
+  (function(){
+    var platformsData=[];
+    var currentPlatformId='';
+    var searchDebounce=null;
 
-    // Определяем вкладку по умолчанию в зависимости от ориентации экрана (портретный режим)
-    function getDefaultPlatform() {
-      const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-      return isPortrait ? "android" : "windows";
+    function getDefaultPlatform(){
+      return window.matchMedia('(orientation:portrait)').matches?'android':'windows';
     }
 
-    let currentPlatformId = getDefaultPlatform();
-
-    function getFallbackIcon(name) {
-      const initial = (name || 'A').charAt(0).toUpperCase();
-      const colors = ['#38bdf8', '#818cf8', '#34d399', '#f472b6', '#fbbf24', '#a78bfa'];
-      const color = colors[name.length % colors.length];
-      
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" class="w-full h-full rounded-lg">
-        <rect width="40" height="40" fill="${color}" fill-opacity="0.15" rx="8"/>
-        <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="${color}" font-weight="700" font-size="18">${initial}</text>
-      </svg>`;
-      return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+    function getFallbackIcon(name){
+      var initial=(name||'A').charAt(0).toUpperCase();
+      var colors=['#38bdf8','#818cf8','#34d399','#f472b6','#fbbf24','#a78bfa'];
+      var color=colors[name.length%colors.length];
+      return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">'+
+        '<rect width="40" height="40" fill="'+color+'" fill-opacity=".15" rx="8"/>'+
+        '<text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="'+color+'" font-weight="700" font-size="18">'+initial+'</text>'+
+        '</svg>'
+      );
     }
 
-    function updateIndicator() {
-      const selector = document.getElementById('platformSelector');
-      const activeBtn = selector.querySelector(`[data-platform-id="${currentPlatformId}"]`);
-      const indicator = document.getElementById('platformIndicator');
-
-      if (activeBtn && indicator) {
-        indicator.style.width = `${activeBtn.offsetWidth}px`;
-        indicator.style.transform = `translateX(${activeBtn.offsetLeft}px)`;
-        indicator.classList.remove('opacity-0');
+    function updateIndicator(){
+      var sel=document.getElementById('platformSelector');
+      var btn=sel.querySelector('[data-pid="'+currentPlatformId+'"]');
+      var ind=document.getElementById('platformIndicator');
+      if(btn&&ind){
+        ind.style.width=btn.offsetWidth+'px';
+        ind.style.transform='translateX('+btn.offsetLeft+'px)';
+        ind.style.opacity='1';
       }
     }
 
-    function renderPlatformSelector() {
-      const selector = document.getElementById('platformSelector');
-      selector.querySelectorAll('button').forEach(btn => btn.remove());
+    function renderPlatformSelector(){
+      var sel=document.getElementById('platformSelector');
+      var frag=document.createDocumentFragment();
+      for(var i=0;i<platformsData.length;i++){
+        var p=platformsData[i];
+        var btn=document.createElement('button');
+        btn.className='platform-btn'+(p.id===currentPlatformId?' active':'');
+        btn.dataset.pid=p.id;
+        btn.innerHTML=p.icon+'<span>'+p.name+'</span>';
+        btn.addEventListener('click',onPlatformClick);
+        frag.appendChild(btn);
+      }
+      sel.appendChild(frag);
+      requestAnimationFrame(updateIndicator);
+    }
 
-      platformsData.forEach(platform => {
-        const isActive = platform.id === currentPlatformId;
-        const btn = document.createElement('button');
-        btn.dataset.platformId = platform.id;
-        
-        btn.className = `relative z-10 flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-150 select-none ${
-          isActive 
-            ? 'text-white' 
-            : 'text-slate-400 hover:text-white'
-        }`;
-        
-        btn.innerHTML = `${platform.icon} <span>${platform.name}</span>`;
-
-        btn.addEventListener('click', () => {
-          if (currentPlatformId !== platform.id) {
-            currentPlatformId = platform.id;
-            
-            selector.querySelectorAll('button').forEach(b => {
-              const isCurr = b.dataset.platformId === currentPlatformId;
-              b.className = `relative z-10 flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-colors duration-150 select-none ${
-                isCurr ? 'text-white' : 'text-slate-400 hover:text-white'
-              }`;
-            });
-
-            updateIndicator();
-
-            const searchInput = document.getElementById('searchInput');
-            searchInput.value = '';
-            document.getElementById('clearSearch').classList.add('hidden');
-
-            renderCatalog();
-          }
-        });
-
-        selector.appendChild(btn);
+    function onPlatformClick(){
+      var pid=this.dataset.pid;
+      if(pid===currentPlatformId)return;
+      currentPlatformId=pid;
+      document.querySelectorAll('.platform-btn').forEach(function(b){
+        b.classList.toggle('active',b.dataset.pid===pid);
       });
-
-      requestAnimationFrame(() => {
-        updateIndicator();
-      });
-    }
-
-    function setWrapperHeight(wrapper, isExpanding) {
-      if (isExpanding) {
-        wrapper.classList.remove('collapsed');
-        const innerGrid = wrapper.querySelector('.app-grid');
-        const targetHeight = innerGrid.offsetHeight + 24;
-        wrapper.style.height = `${targetHeight}px`;
-        wrapper.style.opacity = '1';
-        
-        setTimeout(() => {
-          if (!wrapper.classList.contains('collapsed')) {
-            wrapper.style.height = 'auto';
-          }
-        }, 360);
-      } else {
-        wrapper.style.height = `${wrapper.offsetHeight}px`;
-        wrapper.offsetHeight; 
-        wrapper.classList.add('collapsed');
-        wrapper.style.height = '0px';
-        wrapper.style.opacity = '0';
-      }
-    }
-
-    function renderCatalog(filterText = '') {
-      const container = document.getElementById('catalog');
-      const noResults = document.getElementById('noResults');
-      container.innerHTML = '';
-
-      const currentPlatform = platformsData.find(p => p.id === currentPlatformId);
-      if (!currentPlatform) return;
-
-      let totalVisibleApps = 0;
-      const query = filterText.toLowerCase().trim();
-
-      currentPlatform.categories.forEach((cat) => {
-        const filteredApps = cat.apps.filter(app => 
-          app.name.toLowerCase().includes(query)
-        );
-
-        if (query && filteredApps.length === 0) {
-          return;
-        }
-
-        totalVisibleApps += filteredApps.length;
-
-        const catBox = document.createElement('div');
-        catBox.className = 'rounded-2xl border border-dark-border bg-dark-card/60 overflow-hidden shadow-lg transition-all duration-200';
-
-        const catHeader = document.createElement('div');
-        catHeader.className = 'px-5 py-4 flex items-center justify-between cursor-pointer select-none bg-dark-card hover:bg-dark-hover/80 transition-colors duration-150';
-
-        const shouldBeOpen = query ? true : cat.defaultOpen;
-
-        catHeader.innerHTML = `
-          <div class="flex items-center gap-3">
-            <span class="font-bold text-base sm:text-lg text-slate-100 tracking-wide">${cat.categoryName}</span>
-            <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-slate-800 text-brand-400 border border-slate-700/60">
-              ${filteredApps.length}
-            </span>
-          </div>
-          <div class="chevron-icon text-slate-400 p-1 rounded-lg hover:text-white">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </div>
-        `;
-
-        const wrapper = document.createElement('div');
-        wrapper.className = `category-content-wrapper ${shouldBeOpen ? '' : 'collapsed'}`;
-        
-        const innerContent = document.createElement('div');
-        innerContent.className = 'p-3 sm:p-4';
-
-        const grid = document.createElement('div');
-        grid.className = 'app-grid';
-
-        filteredApps.forEach(app => {
-          const card = document.createElement('a');
-          card.href = app.url;
-          card.target = '_blank';
-          card.rel = 'noopener noreferrer';
-          card.className = 'glass-card group flex items-center gap-3.5 p-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-sm hover:shadow-md hover:shadow-brand-500/5';
-
-          const iconWrapper = document.createElement('div');
-          iconWrapper.className = 'w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-slate-800/80 p-1.5 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-200 overflow-hidden';
-
-          const img = document.createElement('img');
-          img.src = app.icon;
-          img.alt = app.name;
-          img.className = 'w-full h-full object-contain';
-          img.loading = 'lazy';
-          
-          img.onerror = function() {
-            this.onerror = null;
-            this.src = getFallbackIcon(app.name);
-          };
-
-          iconWrapper.appendChild(img);
-
-          const nameSpan = document.createElement('span');
-          nameSpan.className = 'text-xs sm:text-sm font-semibold text-slate-200 group-hover:text-brand-400 transition-colors line-clamp-2 leading-snug';
-          nameSpan.textContent = app.name;
-
-          card.appendChild(iconWrapper);
-          card.appendChild(nameSpan);
-          grid.appendChild(card);
-        });
-
-        innerContent.appendChild(grid);
-        wrapper.appendChild(innerContent);
-
-        catHeader.addEventListener('click', () => {
-          const isCollapsed = wrapper.classList.contains('collapsed');
-          catHeader.querySelector('.chevron-icon').parentElement.classList.toggle('collapsed', !isCollapsed);
-          setWrapperHeight(wrapper, isCollapsed);
-        });
-
-        if (!shouldBeOpen) {
-          catHeader.querySelector('.chevron-icon').parentElement.classList.add('collapsed');
-        }
-
-        catBox.appendChild(catHeader);
-        catBox.appendChild(wrapper);
-        container.appendChild(catBox);
-
-        if (shouldBeOpen) {
-          requestAnimationFrame(() => {
-            wrapper.style.height = 'auto';
-            wrapper.style.opacity = '1';
-          });
-        }
-      });
-
-      if (totalVisibleApps === 0) {
-        noResults.classList.remove('hidden');
-      } else {
-        noResults.classList.add('hidden');
-      }
-    }
-
-    const searchInput = document.getElementById('searchInput');
-    const clearSearch = document.getElementById('clearSearch');
-
-    searchInput.addEventListener('input', (e) => {
-      const value = e.target.value;
-      if (value.length > 0) {
-        clearSearch.classList.remove('hidden');
-      } else {
-        clearSearch.classList.add('hidden');
-      }
-      renderCatalog(value);
-    });
-
-    clearSearch.addEventListener('click', () => {
-      searchInput.value = '';
-      clearSearch.classList.add('hidden');
+      updateIndicator();
+      var si=document.getElementById('searchInput');
+      si.value='';
+      document.getElementById('clearSearch').classList.remove('visible');
       renderCatalog('');
+    }
+
+    function setWrapperHeight(wrapper,expanding){
+      if(expanding){
+        wrapper.classList.remove('collapsed');
+        var h=wrapper.querySelector('.app-grid').offsetHeight+24;
+        wrapper.style.height=h+'px';
+        wrapper.style.opacity='1';
+        setTimeout(function(){
+          if(!wrapper.classList.contains('collapsed'))wrapper.style.height='auto';
+        },360);
+      }else{
+        wrapper.style.height=wrapper.offsetHeight+'px';
+        wrapper.offsetHeight;
+        wrapper.classList.add('collapsed');
+        wrapper.style.height='0';
+        wrapper.style.opacity='0';
+      }
+    }
+
+    function renderCatalog(query){
+      var container=document.getElementById('catalog');
+      var noRes=document.getElementById('noResults');
+      container.innerHTML='';
+      var platform=null;
+      for(var i=0;i<platformsData.length;i++){
+        if(platformsData[i].id===currentPlatformId){platform=platformsData[i];break;}
+      }
+      if(!platform)return;
+
+      var q=query.toLowerCase().trim();
+      var total=0;
+      var frag=document.createDocumentFragment();
+
+      for(var ci=0;ci<platform.categories.length;ci++){
+        var cat=platform.categories[ci];
+        var apps=q
+          ?cat.apps.filter(function(a){return a.name.toLowerCase().indexOf(q)!==-1;})
+          :cat.apps;
+        if(q&&apps.length===0)continue;
+        total+=apps.length;
+
+        var open=q?true:cat.defaultOpen;
+
+        var box=document.createElement('div');
+        box.className='cat-box'+(open?'':' collapsed');
+
+        var hdr=document.createElement('div');
+        hdr.className='cat-header';
+
+        var left=document.createElement('div');
+        left.className='cat-header-left';
+
+        var nameEl=document.createElement('span');
+        nameEl.className='cat-name';
+        nameEl.textContent=cat.categoryName;
+
+        var countEl=document.createElement('span');
+        countEl.className='cat-count';
+        countEl.textContent=apps.length;
+
+        left.appendChild(nameEl);
+        left.appendChild(countEl);
+
+        var chevron=document.createElement('div');
+        chevron.className='chevron';
+        chevron.innerHTML='<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>';
+
+        hdr.appendChild(left);
+        hdr.appendChild(chevron);
+
+        var wrapper=document.createElement('div');
+        wrapper.className='cat-content'+(open?'':' collapsed');
+
+        var inner=document.createElement('div');
+        inner.className='cat-inner';
+
+        var grid=document.createElement('div');
+        grid.className='app-grid';
+
+        var cardFrag=document.createDocumentFragment();
+        for(var ai=0;ai<apps.length;ai++){
+          (function(app){
+            var card=document.createElement('a');
+            card.href=app.url;
+            card.target='_blank';
+            card.rel='noopener noreferrer';
+            card.className='app-card';
+
+            var iconWrap=document.createElement('div');
+            iconWrap.className='app-icon';
+
+            var img=document.createElement('img');
+            img.alt=app.name;
+            img.loading='lazy';
+            img.decoding='async';
+            img.src=app.icon||getFallbackIcon(app.name);
+            img.onerror=function(){
+              this.onerror=null;
+              this.src=getFallbackIcon(app.name);
+            };
+            iconWrap.appendChild(img);
+
+            var nameSpan=document.createElement('span');
+            nameSpan.className='app-name';
+            nameSpan.textContent=app.name;
+
+            card.appendChild(iconWrap);
+            card.appendChild(nameSpan);
+            cardFrag.appendChild(card);
+          })(apps[ai]);
+        }
+
+        grid.appendChild(cardFrag);
+        inner.appendChild(grid);
+        wrapper.appendChild(inner);
+
+        (function(b,w){
+          hdr.addEventListener('click',function(){
+            var collapsed=w.classList.contains('collapsed');
+            b.classList.toggle('collapsed',!collapsed);
+            setWrapperHeight(w,collapsed);
+          });
+        })(box,wrapper);
+
+        box.appendChild(hdr);
+        box.appendChild(wrapper);
+        frag.appendChild(box);
+
+        if(open){
+          (function(w){
+            requestAnimationFrame(function(){
+              w.style.height='auto';
+              w.style.opacity='1';
+            });
+          })(wrapper);
+        }
+      }
+
+      container.appendChild(frag);
+      noRes.classList.toggle('visible',total===0);
+    }
+
+    var searchInput=document.getElementById('searchInput');
+    var clearBtn=document.getElementById('clearSearch');
+
+    searchInput.addEventListener('input',function(){
+      var val=this.value;
+      clearBtn.classList.toggle('visible',val.length>0);
+      clearTimeout(searchDebounce);
+      var v=val;
+      searchDebounce=setTimeout(function(){renderCatalog(v);},120);
     });
 
-    document.getElementById('expandAllBtn').addEventListener('click', () => {
-      document.querySelectorAll('.category-content-wrapper').forEach(wrapper => {
-        const header = wrapper.previousElementSibling;
-        header.querySelector('.chevron-icon').parentElement.classList.remove('collapsed');
-        setWrapperHeight(wrapper, true);
+    clearBtn.addEventListener('click',function(){
+      searchInput.value='';
+      clearBtn.classList.remove('visible');
+      renderCatalog('');
+      searchInput.focus();
+    });
+
+    document.getElementById('expandAllBtn').addEventListener('click',function(){
+      document.querySelectorAll('.cat-content').forEach(function(w){
+        w.closest('.cat-box').classList.remove('collapsed');
+        setWrapperHeight(w,true);
       });
     });
 
-    document.getElementById('collapseAllBtn').addEventListener('click', () => {
-      document.querySelectorAll('.category-content-wrapper').forEach(wrapper => {
-        const header = wrapper.previousElementSibling;
-        header.querySelector('.chevron-icon').parentElement.classList.add('collapsed');
-        setWrapperHeight(wrapper, false);
+    document.getElementById('collapseAllBtn').addEventListener('click',function(){
+      document.querySelectorAll('.cat-content').forEach(function(w){
+        w.closest('.cat-box').classList.add('collapsed');
+        setWrapperHeight(w,false);
       });
     });
 
-    let resizeTimer;
-    window.addEventListener('resize', () => {
+    var resizeTimer;
+    window.addEventListener('resize',function(){
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
+      resizeTimer=setTimeout(function(){
         updateIndicator();
-        document.querySelectorAll('.category-content-wrapper:not(.collapsed)').forEach(wrapper => {
-          wrapper.style.height = 'auto';
+        document.querySelectorAll('.cat-content:not(.collapsed)').forEach(function(w){
+          w.style.height='auto';
         });
-      }, 100);
+      },100);
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-      fetch('./data.json')
-        .then(response => response.json())
-        .then(data => {
-          platformsData = data;
-          renderPlatformSelector();
-          renderCatalog();
-        })
-        .catch(error => console.error('Ошибка загрузки данных:', error));
-    });
+    currentPlatformId=getDefaultPlatform();
+    fetch('./data.json')
+      .then(function(r){return r.json();})
+      .then(function(data){
+        platformsData=data;
+        renderPlatformSelector();
+        renderCatalog('');
+      })
+      .catch(function(e){console.error('Ошибка загрузки данных:',e);});
+  })();
   </script>
 </body>
 </html>
