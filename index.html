@@ -162,8 +162,8 @@
     }
     @media(min-width:640px){.app-name{font-size:.875rem}}
     .app-card:hover .app-name{color:var(--brand-light)}
-    #noResults{display:none;text-align:center;padding:3rem 0;flex-direction:column;align-items:center;gap:.75rem}
-    #noResults.visible{display:flex}
+    #noResults,#loadError{display:none;text-align:center;padding:3rem 0;flex-direction:column;align-items:center;gap:.75rem}
+    #noResults:not([hidden]),#loadError:not([hidden]){display:flex}
     .no-res-icon{
       display:inline-flex;align-items:center;justify-content:center;
       width:48px;height:48px;border-radius:9999px;
@@ -211,7 +211,7 @@
 
     <div id="catalog"></div>
 
-    <div id="noResults">
+    <div id="noResults" hidden>
       <div class="no-res-icon">
         <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 9.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -221,21 +221,45 @@
       <p style="color:var(--text-dim);font-size:.875rem">Попробуйте изменить поисковый запрос</p>
     </div>
 
+    <div id="loadError" hidden>
+      <div class="no-res-icon">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z"/>
+        </svg>
+      </div>
+      <p style="color:#cbd5e1;font-weight:500">Не удалось загрузить каталог</p>
+      <p style="color:var(--text-dim);font-size:.875rem">Проверьте, что файл data.json лежит рядом со страницей</p>
+    </div>
+
     <footer>Cr1mz</footer>
   </div>
 
   <script>
   (function(){
+    'use strict';
+
     var platformsData = [];
     var currentPlatformId = '';
     var searchDebounce = null;
+    var els = {
+      catalog:     document.getElementById('catalog'),
+      noResults:   document.getElementById('noResults'),
+      loadError:   document.getElementById('loadError'),
+      selector:    document.getElementById('platformSelector'),
+      indicator:   document.getElementById('platformIndicator'),
+      searchInput: document.getElementById('searchInput'),
+      clearSearch: document.getElementById('clearSearch'),
+      expandAll:   document.getElementById('expandAllBtn'),
+      collapseAll: document.getElementById('collapseAllBtn')
+    };
 
     function getDefaultPlatform(){
       return window.matchMedia('(orientation:portrait)').matches ? 'android' : 'windows';
     }
 
     function getFallbackIcon(name){
-      var initial = (name || 'A').charAt(0).toUpperCase();
+      name = name || 'A';
+      var initial = name.charAt(0).toUpperCase();
       var colors = ['#38bdf8','#818cf8','#34d399','#f472b6','#fbbf24','#a78bfa'];
       var color = colors[name.length % colors.length];
       return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
@@ -247,37 +271,41 @@
     }
 
     function updateIndicator(){
-      var sel = document.getElementById('platformSelector');
-      var btn = sel.querySelector('[data-pid="' + currentPlatformId + '"]');
-      var ind = document.getElementById('platformIndicator');
-      if(btn && ind){
-        ind.style.width = btn.offsetWidth + 'px';
-        ind.style.transform = 'translateX(' + btn.offsetLeft + 'px)';
-        ind.style.opacity = '1';
-      }
+      var btn = els.selector.querySelector('.platform-btn.active');
+      if(!btn) return;
+      els.indicator.style.width = btn.offsetWidth + 'px';
+      els.indicator.style.transform = 'translateX(' + btn.offsetLeft + 'px)';
+      els.indicator.style.opacity = '1';
     }
 
     function renderPlatformSelector(){
-      var sel = document.getElementById('platformSelector');
-      var ind = document.getElementById('platformIndicator');
-      sel.innerHTML = '';
-      sel.appendChild(ind);
+      els.selector.textContent = '';
+      els.selector.appendChild(els.indicator);
 
       var frag = document.createDocumentFragment();
       for(var i = 0; i < platformsData.length; i++){
-        var p = platformsData[i];
-        var btn = document.createElement('button');
-        btn.className = 'platform-btn' + (p.id === currentPlatformId ? ' active' : '');
-        btn.dataset.pid = p.id;
-        if (p.icon.trim().indexOf('<svg') === 0) {
-          btn.innerHTML = '<span class="platform-icon" style="display:flex;width:18px;height:18px;">' + p.icon + '</span><span>' + p.name + '</span>';
-        } else {
-          btn.innerHTML = '<img src="' + p.icon + '" style="width:18px;height:18px;object-fit:contain;"><span>' + p.name + '</span>';
-        }
-        btn.addEventListener('click', onPlatformClick);
-        frag.appendChild(btn);
+        (function(p){
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'platform-btn' + (p.id === currentPlatformId ? ' active' : '');
+          btn.dataset.pid = p.id;
+          btn.setAttribute('aria-label', p.name);
+
+          if(p.icon && p.icon.trim().indexOf('<svg') === 0){
+            btn.innerHTML = '<span class="platform-icon" style="display:flex;width:18px;height:18px;">' + p.icon + '</span><span>' + p.name + '</span>';
+          } else {
+            btn.innerHTML = '<img src="' + (p.icon || '') + '" alt="" style="width:18px;height:18px;object-fit:contain;"><span>' + p.name + '</span>';
+            var img = btn.querySelector('img');
+            if(img && !img.complete){
+              img.addEventListener('load', updateIndicator);
+            }
+          }
+
+          btn.addEventListener('click', onPlatformClick);
+          frag.appendChild(btn);
+        })(platformsData[i]);
       }
-      sel.appendChild(frag);
+      els.selector.appendChild(frag);
       requestAnimationFrame(updateIndicator);
     }
 
@@ -285,21 +313,23 @@
       var pid = this.dataset.pid;
       if(pid === currentPlatformId) return;
       currentPlatformId = pid;
-      document.querySelectorAll('.platform-btn').forEach(function(b){
-        b.classList.toggle('active', b.dataset.pid === pid);
-      });
+
+      var btns = els.selector.querySelectorAll('.platform-btn');
+      for(var i = 0; i < btns.length; i++){
+        btns[i].classList.toggle('active', btns[i].dataset.pid === pid);
+      }
       updateIndicator();
-      var si = document.getElementById('searchInput');
-      si.value = '';
-      document.getElementById('clearSearch').classList.remove('visible');
+
+      els.searchInput.value = '';
+      els.clearSearch.classList.remove('visible');
       renderCatalog('');
     }
 
     function setWrapperHeight(wrapper, expanding){
       if(expanding){
+        if(!wrapper.classList.contains('collapsed')) return;
         wrapper.classList.remove('collapsed');
-        var fullHeight = wrapper.scrollHeight;
-        wrapper.style.height = fullHeight + 'px';
+        wrapper.style.height = wrapper.scrollHeight + 'px';
         wrapper.style.opacity = '1';
 
         var onTransitionEnd = function(e){
@@ -310,8 +340,9 @@
         };
         wrapper.addEventListener('transitionend', onTransitionEnd);
       } else {
+        if(wrapper.classList.contains('collapsed')) return;
         wrapper.style.height = wrapper.scrollHeight + 'px';
-        wrapper.offsetHeight;
+        void wrapper.offsetHeight;
         wrapper.classList.add('collapsed');
         wrapper.style.height = '0';
         wrapper.style.opacity = '0';
@@ -319,9 +350,7 @@
     }
 
     function renderCatalog(query){
-      var container = document.getElementById('catalog');
-      var noRes = document.getElementById('noResults');
-      container.innerHTML = '';
+      els.catalog.textContent = '';
 
       var platform = null;
       for(var i = 0; i < platformsData.length; i++){
@@ -329,12 +358,13 @@
       }
       if(!platform) return;
 
-      var q = query.toLowerCase().trim();
+      var categories = platform.categories || [];
+      var q = (query || '').toLowerCase().trim();
       var total = 0;
       var frag = document.createDocumentFragment();
 
-      for(var ci = 0; ci < platform.categories.length; ci++){
-        var cat = platform.categories[ci];
+      for(var ci = 0; ci < categories.length; ci++){
+        var cat = categories[ci];
         var apps = q
           ? cat.apps.filter(function(a){ return a.name.toLowerCase().indexOf(q) !== -1; })
           : cat.apps;
@@ -342,13 +372,14 @@
         if(q && apps.length === 0) continue;
         total += apps.length;
 
-        var open = q ? true : cat.defaultOpen;
+        var open = q ? true : !!cat.defaultOpen;
 
         var box = document.createElement('div');
         box.className = 'cat-box' + (open ? '' : ' collapsed');
 
         var hdr = document.createElement('div');
         hdr.className = 'cat-header';
+        hdr.setAttribute('aria-expanded', String(open));
 
         var left = document.createElement('div');
         left.className = 'cat-header-left';
@@ -387,7 +418,6 @@
         var grid = document.createElement('div');
         grid.className = 'app-grid';
 
-        var cardFrag = document.createDocumentFragment();
         for(var ai = 0; ai < apps.length; ai++){
           (function(app){
             var card = document.createElement('a');
@@ -416,21 +446,21 @@
 
             card.appendChild(iconWrap);
             card.appendChild(nameSpan);
-            cardFrag.appendChild(card);
+            grid.appendChild(card);
           })(apps[ai]);
         }
 
-        grid.appendChild(cardFrag);
         inner.appendChild(grid);
         wrapper.appendChild(inner);
 
-        (function(b, w){
-          hdr.addEventListener('click', function(){
+        (function(b, w, h){
+          h.addEventListener('click', function(){
             var isCollapsed = w.classList.contains('collapsed');
             b.classList.toggle('collapsed', !isCollapsed);
+            h.setAttribute('aria-expanded', String(isCollapsed));
             setWrapperHeight(w, isCollapsed);
           });
-        })(box, wrapper);
+        })(box, wrapper, hdr);
 
         box.appendChild(hdr);
         box.appendChild(wrapper);
@@ -442,46 +472,48 @@
         }
       }
 
-      container.appendChild(frag);
-      noRes.classList.toggle('visible', total === 0);
+      els.catalog.appendChild(frag);
+      els.noResults.hidden = (total !== 0);
     }
 
-    var searchInput = document.getElementById('searchInput');
-    var clearBtn = document.getElementById('clearSearch');
-
-    searchInput.addEventListener('input', function(){
+    els.searchInput.addEventListener('input', function(){
       var val = this.value;
-      clearBtn.classList.toggle('visible', val.length > 0);
+      els.clearSearch.classList.toggle('visible', val.length > 0);
       clearTimeout(searchDebounce);
-      var v = val;
-      searchDebounce = setTimeout(function(){ renderCatalog(v); }, 120);
+      searchDebounce = setTimeout(function(){ renderCatalog(val); }, 120);
     });
 
-    clearBtn.addEventListener('click', function(){
-      searchInput.value = '';
-      clearBtn.classList.remove('visible');
+    els.clearSearch.addEventListener('click', function(){
+      els.searchInput.value = '';
+      els.clearSearch.classList.remove('visible');
       renderCatalog('');
-      searchInput.focus();
+      els.searchInput.focus();
     });
 
-    document.getElementById('expandAllBtn').addEventListener('click', function(){
-      document.querySelectorAll('.cat-content').forEach(function(w){
-        var box = w.closest('.cat-box');
-        if(box) box.classList.remove('collapsed');
-        if(w.classList.contains('collapsed')){
-          setWrapperHeight(w, true);
+    els.expandAll.addEventListener('click', function(){
+      var wrappers = els.catalog.querySelectorAll('.cat-content');
+      for(var i = 0; i < wrappers.length; i++){
+        var box = wrappers[i].closest('.cat-box');
+        if(box){
+          box.classList.remove('collapsed');
+          var h = box.querySelector('.cat-header');
+          if(h) h.setAttribute('aria-expanded', 'true');
         }
-      });
+        setWrapperHeight(wrappers[i], true);
+      }
     });
 
-    document.getElementById('collapseAllBtn').addEventListener('click', function(){
-      document.querySelectorAll('.cat-content').forEach(function(w){
-        var box = w.closest('.cat-box');
-        if(box) box.classList.add('collapsed');
-        if(!w.classList.contains('collapsed')){
-          setWrapperHeight(w, false);
+    els.collapseAll.addEventListener('click', function(){
+      var wrappers = els.catalog.querySelectorAll('.cat-content');
+      for(var i = 0; i < wrappers.length; i++){
+        var box = wrappers[i].closest('.cat-box');
+        if(box){
+          box.classList.add('collapsed');
+          var h = box.querySelector('.cat-header');
+          if(h) h.setAttribute('aria-expanded', 'false');
         }
-      });
+        setWrapperHeight(wrappers[i], false);
+      }
     });
 
     var resizeTimer;
@@ -489,21 +521,38 @@
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function(){
         updateIndicator();
-        document.querySelectorAll('.cat-content:not(.collapsed)').forEach(function(w){
-          w.style.height = 'auto';
-        });
+        var open = els.catalog.querySelectorAll('.cat-content:not(.collapsed)');
+        for(var i = 0; i < open.length; i++){
+          open[i].style.height = 'auto';
+        }
       }, 100);
     });
 
     currentPlatformId = getDefaultPlatform();
+
     fetch('./data.json')
-      .then(function(r){ return r.json(); })
+      .then(function(r){
+        if(!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
       .then(function(data){
+        if(!Array.isArray(data) || data.length === 0) throw new Error('Пустые или неверные данные');
+
+        var found = false;
+        for(var i = 0; i < data.length; i++){
+          if(data[i].id === currentPlatformId){ found = true; break; }
+        }
+        if(!found) currentPlatformId = data[0].id;
+
         platformsData = data;
+        els.loadError.hidden = true;
         renderPlatformSelector();
         renderCatalog('');
       })
-      .catch(function(e){ console.error('Ошибка загрузки данных:', e); });
+      .catch(function(e){
+        console.error('Ошибка загрузки данных:', e);
+        els.loadError.hidden = false;
+      });
   })();
   </script>
 </body>
