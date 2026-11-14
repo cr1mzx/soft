@@ -141,7 +141,7 @@
         ]
       },
       {
-        "categoryName": "Мультимедиа",
+        "categoryName": "Медиа",
         "icon": "<svg width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M7 4v16M17 4v16M3 8h4m10 0h4M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z\"/></svg>",
         "defaultOpen": true,
         "apps": [
@@ -311,8 +311,13 @@
           },
           {
             "name": "Hytale",
-            "icon": "https://hytale.com/images/logo-h.webp",
+            "icon": "https://hytale.com/_astro/logo-h.DGX5BvcL.webp",
             "url": "https://hytale.com/download"
+          },
+          {
+            "name": "GamesVoice",
+            "icon": "https://www.gamesvoice.ru/favicon.ico",
+            "url": "https://www.gamesvoice.ru/"
           }
         ]
       },
