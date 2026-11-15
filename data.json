@@ -21,7 +21,8 @@
           { "name": "Ventoy", "icon": "https://avatars.githubusercontent.com/u/59477474", "url": "https://github.com/ventoy/Ventoy" },
           { "name": "Rufus", "icon": "https://rufus.ie/favicon.ico", "url": "https://rufus.ie/ru/" },
           { "name": "h2testw", "icon": "https://h2testw.org/wp-content/uploads/2023/03/h2testw-logo.png", "url": "https://h2testw.org/#download-h2testw" },
-          { "name": "Validrive", "icon": "https://www.grc.com/validrive/ValiDrive-Icon.png", "url": "https://www.grc.com/validrive.htm" }
+          { "name": "Validrive", "icon": "https://www.grc.com/validrive/ValiDrive-Icon.png", "url": "https://www.grc.com/validrive.htm" },
+          { "name": "R.Saver", "icon": "https://rlab.ru/favicon.ico", "url": "https://rlab.ru/tools/rsaver.html" }
         ]
       },
       {
