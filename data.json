@@ -622,7 +622,8 @@
         "defaultOpen": true,
         "apps": [
           { "name": "ADB TV", "icon": "https://adbappcontrol.com/assets/img/acpc.png", "url": "https://adb.cybercat.dev/ru/tv/#download" },
-          { "name": "OwnTV", "icon": "", "url": "https://github.com/ahXN00/OwnTV" }
+          { "name": "OwnTV", "icon": "", "url": "https://github.com/ahXN00/OwnTV" },
+          { "name": "Projectivy Launcher", "icon": "", "url": "https://github.com/spocky/miproja1" }
         ]
       }   
     ]
